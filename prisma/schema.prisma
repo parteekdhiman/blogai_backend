@@ -1,0 +1,165 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  password      String?
+  name          String?
+  image         String?
+  bio           String?
+  role          Role      @default(USER)
+  emailVerified DateTime?
+  lastLoginAt   DateTime?
+  loginCount    Int       @default(0)
+  blogs         Blog[]
+  comments      Comment[]
+  refreshTokens RefreshToken[]
+  auditLogs     AuditLog[]
+  resetTokens   PasswordResetToken[]
+  accounts      Account[]
+  deletedAt     DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([token])
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  action    String
+  entity    String
+  entityId  String
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+}
+
+model VerificationToken {
+  id         String   @id @default(uuid())
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+enum BlogStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model Blog {
+  id              String         @id @default(uuid())
+  title           String
+  slug            String         @unique
+  content         String
+  excerpt         String?
+  coverImage      String?
+  status          BlogStatus     @default(DRAFT)
+  metaTitle       String?
+  metaDescription String?
+  keywords        String[]       @default([])
+  tags            String[]       @default([])
+  readTime        Int?
+  viewCount       Int            @default(0)
+  aiGenerated     Boolean        @default(false)
+  aiModel         String?
+  originalPrompt  String?
+  author          User           @relation(fields: [authorId], references: [id])
+  authorId        String
+  categories      BlogCategory[]
+  comments        Comment[]
+  publishedAt     DateTime?
+  deletedAt       DateTime?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+}
+
+model Category {
+  id          String         @id @default(cuid())
+  name        String         @unique
+  slug        String         @unique
+  description String?
+  blogs       BlogCategory[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model BlogCategory {
+  blogId     String
+  categoryId String
+  blog       Blog     @relation(fields: [blogId], references: [id], onDelete: Cascade)
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@id([blogId, categoryId])
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  content   String
+  blog      Blog     @relation(fields: [blogId], references: [id])
+  blogId    String
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String
+  deletedAt DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  
+  @@index([userId])
+  @@index([tokenHash])
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
