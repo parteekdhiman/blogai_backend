@@ -76,11 +76,28 @@ app.use(helmet({
 }));
 
 // CORS configuration
+const allowedOrigins = process.env.CORS_ORIGIN
+    ? process.env.CORS_ORIGIN.split(',').map(origin => origin.trim())
+    : ['*'];
+
 app.use(cors({
-    origin: process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : '*',
+    origin: function(origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+        
+        // Allow requests from configured origins
+        if (allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            // Reject in a browser-friendly way without throwing an error
+            callback(null, false);
+        }
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+    optionsSuccessStatus: 200,
+    maxAge: 86400, // 24 hours
 }));
 
 /**
