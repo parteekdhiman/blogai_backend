@@ -4,15 +4,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.resetPassword = exports.logoutAllDevices = exports.logoutUser = exports.requestPasswordReset = exports.refreshTokenService = exports.loginUser = exports.resendVerificationEmail = exports.verifyUserEmail = exports.registerUser = void 0;
-const user_model_1 = __importDefault(require("@/models/user.model"));
-const token_model_1 = require("@/models/token.model");
-const audit_model_1 = require("@/models/audit.model");
-const bcrypt_1 = require("@/utils/bcrypt");
-const email_service_1 = require("@/services/email.service");
-const errors_1 = require("@/utils/errors");
+const user_model_1 = __importDefault(require("../models/user.model"));
+const token_model_1 = require("../models/token.model");
+const audit_model_1 = require("../models/audit.model");
+const bcrypt_1 = require("../utils/bcrypt");
+const email_service_1 = require("../services/email.service");
+const errors_1 = require("../utils/errors");
 const crypto_1 = __importDefault(require("crypto"));
-const redis_1 = require("@/config/redis");
-const jwt_1 = require("@/utils/jwt");
+const redis_1 = require("../config/redis");
+const jwt_1 = require("../utils/jwt");
 const mongoose_1 = __importDefault(require("mongoose"));
 const registerUser = async (input) => {
     const { name, email, password } = input;

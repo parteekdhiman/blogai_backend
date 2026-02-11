@@ -37,9 +37,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const categoryController = __importStar(require("@controllers/category.controller"));
-const auth_1 = require("@middleware/auth");
-const user_model_1 = require("@models/user.model");
+const categoryController = __importStar(require("../controllers/category.controller"));
+const auth_1 = require("../middleware/auth");
+const user_model_1 = require("../models/user.model");
 const router = express_1.default.Router();
 router.get('/', categoryController.getAllCategories);
 router.post('/', auth_1.authenticate, (0, auth_1.authorize)(user_model_1.Role.ADMIN), categoryController.createCategory);

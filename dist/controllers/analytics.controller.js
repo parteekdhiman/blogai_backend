@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getPublicStats = void 0;
-const user_model_1 = __importDefault(require("@models/user.model"));
-const blog_model_1 = require("@models/blog.model");
+const user_model_1 = __importDefault(require("../models/user.model"));
+const blog_model_1 = require("../models/blog.model");
 /**
  * Controller for fetching public stats for the About page.
  */

@@ -38,7 +38,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.aiService = void 0;
 const openai_1 = __importDefault(require("openai"));
-const logger_1 = require("@middleware/logger");
+const logger_1 = require("../middleware/logger");
 class AIService {
     openai = null;
     constructor() {

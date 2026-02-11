@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.verifyRefreshToken = exports.verifyAccessToken = exports.generateTokenPair = exports.generateRefreshToken = exports.generateAccessToken = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const errors_1 = require("@/utils/errors");
+const errors_1 = require("../utils/errors");
 const generateAccessToken = (payload) => {
     return jsonwebtoken_1.default.sign(payload, process.env.JWT_SECRET, { expiresIn: (process.env.JWT_ACCESS_EXPIRY || '15m') });
 };

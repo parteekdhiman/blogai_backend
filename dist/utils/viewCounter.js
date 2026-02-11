@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.incrementViewCount = incrementViewCount;
 exports.flushViewCounts = flushViewCounts;
-const blog_model_1 = require("@/models/blog.model");
-const redis_1 = require("@/config/redis");
+const blog_model_1 = require("../models/blog.model");
+const redis_1 = require("../config/redis");
 /**
  * Increment view count for a blog post
  * Uses Redis for temporary storage and batches updates to MongoDB

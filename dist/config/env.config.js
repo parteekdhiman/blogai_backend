@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validateEnv = exports.config = exports.startupErrors = void 0;
-const logger_1 = require("@middleware/logger");
+const logger_1 = require("../middleware/logger");
 // Stores any errors encountered during configuration loading
 exports.startupErrors = [];
 /**

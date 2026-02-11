@@ -15,7 +15,7 @@ exports.getSession = getSession;
 exports.deleteSession = deleteSession;
 exports.disconnect = disconnect;
 const ioredis_1 = __importDefault(require("ioredis"));
-const logger_1 = require("@middleware/logger");
+const logger_1 = require("../middleware/logger");
 const env_config_1 = require("./env.config");
 /**
  * Advanced Redis Client Configuration

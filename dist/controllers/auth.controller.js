@@ -34,11 +34,11 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.resetPasswordController = exports.googleCallback = exports.forgotPassword = exports.revokeSession = exports.getActiveSessions = exports.logoutAll = exports.logout = exports.refreshAccessToken = exports.login = exports.resendVerification = exports.verifyEmail = exports.register = void 0;
-const auth_service_1 = require("@/services/auth.service");
-const errors_1 = require("@/utils/errors");
-const token_model_1 = require("@/models/token.model");
-const userAgent_1 = require("@/utils/userAgent");
-const jwt_1 = require("@/utils/jwt");
+const auth_service_1 = require("../services/auth.service");
+const errors_1 = require("../utils/errors");
+const token_model_1 = require("../models/token.model");
+const userAgent_1 = require("../utils/userAgent");
+const jwt_1 = require("../utils/jwt");
 const register = async (req, res, next) => {
     try {
         const { name, email, password } = req.body;
@@ -261,7 +261,7 @@ const googleCallback = async (req, res, next) => {
         });
         // User update is handled in passport strategy now
         // Audit log
-        const { AuditLogModel } = await Promise.resolve().then(() => __importStar(require('@/models/audit.model')));
+        const { AuditLogModel } = await Promise.resolve().then(() => __importStar(require('../models/audit.model')));
         await AuditLogModel.create({
             userId: user.id,
             action: 'OAUTH_LOGIN',

@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generate = void 0;
-const ai_service_1 = require("@services/ai.service");
-const errors_1 = require("@utils/errors");
+const ai_service_1 = require("../services/ai.service");
+const errors_1 = require("../utils/errors");
 const generate = async (req, res, next) => {
     try {
         const { prompt, systemPrompt, type } = req.body;

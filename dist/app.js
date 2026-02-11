@@ -45,22 +45,22 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const express_rate_limit_1 = __importDefault(require("express-rate-limit"));
 const uuid_1 = require("uuid");
 // Middlewares
-const errorHandler_1 = require("@middleware/errorHandler");
-const logger_1 = require("@middleware/logger");
+const errorHandler_1 = require("./middleware/errorHandler");
+const logger_1 = require("./middleware/logger");
 // Config
 // import prisma from '@config/database'; // Deprecated
-const redis_1 = __importDefault(require("@config/redis"));
+const redis_1 = __importDefault(require("./config/redis"));
 // Utils
-const errors_1 = require("@utils/errors");
+const errors_1 = require("./utils/errors");
 // Routes
-const auth_routes_1 = __importDefault(require("@routes/auth.routes"));
-const blog_routes_1 = __importDefault(require("@routes/blog.routes"));
-const user_routes_1 = __importDefault(require("@routes/user.routes"));
-const category_routes_1 = __importDefault(require("@routes/category.routes"));
-const ai_routes_1 = __importDefault(require("@routes/ai.routes"));
-const upload_routes_1 = __importDefault(require("@routes/upload.routes"));
-const analytics_routes_1 = __importDefault(require("@routes/analytics.routes"));
-const passport_1 = __importDefault(require("@/config/passport"));
+const auth_routes_1 = __importDefault(require("./routes/auth.routes"));
+const blog_routes_1 = __importDefault(require("./routes/blog.routes"));
+const user_routes_1 = __importDefault(require("./routes/user.routes"));
+const category_routes_1 = __importDefault(require("./routes/category.routes"));
+const ai_routes_1 = __importDefault(require("./routes/ai.routes"));
+const upload_routes_1 = __importDefault(require("./routes/upload.routes"));
+const analytics_routes_1 = __importDefault(require("./routes/analytics.routes"));
+const passport_1 = __importDefault(require("./config/passport"));
 // Load environment variables
 // dotenv.config(); // Moved to server.ts
 /**

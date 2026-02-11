@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteCategory = exports.updateCategory = exports.createCategory = exports.getAllCategories = void 0;
-const blog_model_1 = require("@models/blog.model");
-const errors_1 = require("@utils/errors");
+const blog_model_1 = require("../models/blog.model");
+const errors_1 = require("../utils/errors");
 const getAllCategories = async (req, res, next) => {
     try {
         const categories = await blog_model_1.CategoryModel.find().sort({ name: 1 });

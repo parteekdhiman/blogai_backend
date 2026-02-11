@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateProfile = exports.getProfile = void 0;
-const user_model_1 = __importDefault(require("@models/user.model"));
-const errors_1 = require("@utils/errors");
+const user_model_1 = __importDefault(require("../models/user.model"));
+const errors_1 = require("../utils/errors");
 const getProfile = async (req, res, next) => {
     try {
         const userId = req.user?.userId;

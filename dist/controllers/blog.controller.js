@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getBlogs = exports.getBlogBySlug = exports.createBlog = void 0;
-const blog_service_1 = require("@/services/blog.service");
+const blog_service_1 = require("../services/blog.service");
 /**
  * Controller for creating a new blog post.
  */
@@ -46,7 +46,7 @@ exports.getBlogBySlug = getBlogBySlug;
 const getBlogs = async (req, res, next) => {
     try {
         const userId = req.query.userId;
-        const { getBlogsService } = require('@/services/blog.service');
+        const { getBlogsService } = require('../services/blog.service');
         const blogs = await getBlogsService({ author: userId });
         res.json({
             success: true,

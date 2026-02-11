@@ -37,9 +37,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const upload_1 = require("@middleware/upload");
-const uploadController = __importStar(require("@controllers/upload.controller"));
-const auth_1 = require("@middleware/auth");
+const upload_1 = require("../middleware/upload");
+const uploadController = __importStar(require("../controllers/upload.controller"));
+const auth_1 = require("../middleware/auth");
 const router = express_1.default.Router();
 // Protect upload route
 router.post('/', auth_1.authenticate, upload_1.upload.single('image'), uploadController.uploadImage);

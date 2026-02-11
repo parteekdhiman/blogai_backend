@@ -4,15 +4,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getBlogsService = exports.getBlogBySlugService = exports.createBlogService = void 0;
-const blog_model_1 = require("@/models/blog.model");
-const blog_model_2 = require("@/models/blog.model"); // Defined in same file usually or separate? Checking previous writes... I wrote CategoryModel in blog.model.ts
-const audit_model_1 = require("@/models/audit.model");
-const blog_model_3 = require("@/models/blog.model"); // Also in blog.model.ts
-const errors_1 = require("@/utils/errors");
-const slugify_1 = require("@/utils/slugify");
-const helpers_1 = require("@/utils/helpers");
-const redis_1 = require("@/config/redis");
-const viewCounter_1 = require("@/utils/viewCounter");
+const blog_model_1 = require("../models/blog.model");
+const blog_model_2 = require("../models/blog.model"); // Defined in same file usually or separate? Checking previous writes... I wrote CategoryModel in blog.model.ts
+const audit_model_1 = require("../models/audit.model");
+const blog_model_3 = require("../models/blog.model"); // Also in blog.model.ts
+const errors_1 = require("../utils/errors");
+const slugify_1 = require("../utils/slugify");
+const helpers_1 = require("../utils/helpers");
+const redis_1 = require("../config/redis");
+const viewCounter_1 = require("../utils/viewCounter");
 const mongoose_1 = __importDefault(require("mongoose"));
 /**
  * Creates a new blog post with transactional safety.

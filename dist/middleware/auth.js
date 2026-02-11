@@ -37,9 +37,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.protect = exports.checkOwnership = exports.authorize = exports.optionalAuth = exports.authenticate = void 0;
-const jwt_1 = require("@/utils/jwt");
-const errors_1 = require("@/utils/errors");
-const user_model_1 = __importDefault(require("@/models/user.model"));
+const jwt_1 = require("../utils/jwt");
+const errors_1 = require("../utils/errors");
+const user_model_1 = __importDefault(require("../models/user.model"));
 /**
  * Global authentication middleware to protect routes.
  * Validates JWT, checks user existence and email verification status.
@@ -132,8 +132,8 @@ const checkOwnership = (resourceType) => {
             const resourceId = req.params.id;
             let resource;
             // Dynamic import to avoid circular dependencies if models import this file
-            const { BlogModel } = await Promise.resolve().then(() => __importStar(require('@/models/blog.model')));
-            const { CommentModel } = await Promise.resolve().then(() => __importStar(require('@/models/blog.model')));
+            const { BlogModel } = await Promise.resolve().then(() => __importStar(require('../models/blog.model')));
+            const { CommentModel } = await Promise.resolve().then(() => __importStar(require('../models/blog.model')));
             // Checking my previous write_to_file for models...
             // I wrote CommentModel inside `src/models/blog.model.ts` (Complexity 3 write).
             // So I should import from there.
@@ -143,7 +143,7 @@ const checkOwnership = (resourceType) => {
                     break;
                 case 'comment':
                     // Re-importing from blog.model since I defined it there
-                    const { CommentModel } = await Promise.resolve().then(() => __importStar(require('@/models/blog.model')));
+                    const { CommentModel } = await Promise.resolve().then(() => __importStar(require('../models/blog.model')));
                     resource = await CommentModel.findById(resourceId).select('author');
                     break;
             }

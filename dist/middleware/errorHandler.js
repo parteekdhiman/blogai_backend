@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.errorHandler = void 0;
 const errors_1 = require("../utils/errors");
-const logger_1 = require("@middleware/logger");
+const logger_1 = require("./logger");
 const errorHandler = (err, req, res, next) => {
     if (err instanceof errors_1.ApiError || err instanceof errors_1.AppError) {
         return res.status(err.statusCode).json({

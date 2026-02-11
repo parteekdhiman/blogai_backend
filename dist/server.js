@@ -42,10 +42,10 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const http_1 = __importDefault(require("http"));
 const app_1 = __importDefault(require("./app"));
-const logger_1 = require("@middleware/logger");
-const mongo_1 = __importDefault(require("@config/mongo"));
-const redis_1 = __importDefault(require("@config/redis"));
-const env_validator_1 = require("@utils/env.validator");
+const logger_1 = require("./middleware/logger");
+const mongo_1 = __importDefault(require("./config/mongo"));
+const redis_1 = __importDefault(require("./config/redis"));
+const env_validator_1 = require("./utils/env.validator");
 // Load environment variables and validate
 (0, env_validator_1.validateEnv)();
 const PORT = process.env.PORT || 5000;
