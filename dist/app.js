@@ -115,7 +115,8 @@ app.use((0, cors_1.default)({
             callback(null, true);
         }
         else {
-            callback(new Error('Not allowed by CORS'));
+            // Reject in a browser-friendly way without throwing an error
+            callback(null, false);
         }
     },
     credentials: true,
